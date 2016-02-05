@@ -6,13 +6,16 @@ time series data. Legacy portrayals of such data would centre around
 line charts. Line charts have reportedly been around since the early
 1700s (source: Wikipedia) and we have nothing against them. They
 facilitate trend detection and comparison, are simple to draw, and easy
-to understand; all in all a very well behaved visualisation. Their use
-is widespread from the heartbeat monitor in a hospital to the
-multiple-monitor display at a bank.
+to understand; all in all a very well behaved visualisation. In modern
+times, their use is widespread from the heartbeat monitor at a hospital
+to the multiple-monitor display at a trader's desk.
 
     ## [1] "Excel 97 look recreated in R with the ggthemes package"
 
 <img src="README_files/figure-markdown_strict/excel97_line-1.png" title="" alt="" style="display: block; margin: auto;" />
+
+ggTimeSeries
+------------
 
 However there are cases when the data scientist becomes more demanding
 and specific. Five alternatives available to such a data scientist are
@@ -32,15 +35,13 @@ Before that, setting a minimal theme -
        panel.border = element_blank()
     )
 
-Calendar heatmap
+Calendar Heatmap
 ----------------
 
 Available as `stat_calendar_heatmap` and `ggplot_calendar_heatmap`.
 
 A calendar heatmap is a great way to visualise daily data. Its structure
-makes it easy to detect weekly, monthly, or seasonal patterns. Can you
-spot how the weekends seem to be different from the weekdays and how
-summer seems to be different from winter?
+makes it easy to detect weekly, monthly, or seasonal patterns.
 
     # creating some data
     set.seed(1)
@@ -87,7 +88,7 @@ summer seems to be different from winter?
 
 <img src="README_files/figure-markdown_strict/calendar_heatmap-2.png" title="" alt="" style="display: block; margin: auto;" />
 
-Horizon plots
+Horizon Plots
 -------------
 
 Available as `stat_horizon` and `ggplot_horizon`.
@@ -96,8 +97,8 @@ Imagine an area chart which has been chopped into multiple chunks of
 equal height. If you overlay these chunks one on top of the the other,
 and colour them to indicate which chunk it is, you get a horizon plot.
 Horizon plots are useful when visualising y values spanning a vast range
-and / or trying to highlight outliers without losing context of
-variation in the rest of the data.
+but with a skewed distribution, and / or trying to highlight outliers
+without losing context of variation in the rest of the data.
 
     # creating some data
     set.seed(1)
@@ -166,7 +167,8 @@ Waterfall
 
 Available as `stat_waterfall` and `ggplot_waterfall`.
 
-A waterfall plot emphasis the changes in the time series.
+Rather than the values itself, a waterfall plot tries to bring out the
+changes in the values.
 
     # creating some data
     set.seed(1)
@@ -186,15 +188,14 @@ A waterfall plot emphasis the changes in the time series.
 
 <img src="README_files/figure-markdown_strict/waterfall-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-Occurrence dot plot
+Occurrence Dot Plot
 -------------------
 
 Available as `stat_occurrence`.
 
 This one is a favourite in infographics. For rare events, the reader
-will probably find it convenient to have the count of events encoded in
-the chart itself and this is the purpose served by the occurrence dot
-plot.
+would find it convenient to have the count of events encoded in the
+chart itself instead of having to map the value back to the Y axis.
 
     # creating some data
     set.seed(1)
