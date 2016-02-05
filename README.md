@@ -1,8 +1,3 @@
-    library(ggthemes)
-    library(ggplot2)
-    library(data.table)
-    library(ggTimeSeries)
-
 Line Charts Legacy
 ------------------
 
@@ -111,6 +106,11 @@ variation in the rest of the data.
     # base plot
     p1 = ggplot_horizon(dfData, 'x', 'y')
 
+
+    print("If you're seeing any vertical white stripes, it's a display thing.")
+
+    ## [1] "If you're seeing any vertical white stripes, it's a display thing."
+
     # adding some formatting
     p1 + 
        xlab('') + 
@@ -135,7 +135,7 @@ time.
 
     # creating some data
     set.seed(10)
-    df = data.frame(
+    dfData = data.frame(
        Time = 1:1000,
        Signal = abs(
           c(
@@ -149,7 +149,7 @@ time.
     )
 
     # base plot
-    p1 = ggplot(df, aes(x = Time, y = Signal, group = VariableLabel, fill = VariableLabel)) +
+    p1 = ggplot(dfData, aes(x = Time, y = Signal, group = VariableLabel, fill = VariableLabel)) +
       stat_steamgraph()
 
 
@@ -157,7 +157,7 @@ time.
     p1 + 
        xlab('') + 
        ylab('') + 
-       coord_fixed( 0.2 * diff(range(df$Time)) / diff(range(df$Signal)))
+       coord_fixed( 0.2 * diff(range(dfData$Time)) / diff(range(dfData$Signal)))
 
 <img src="README_files/figure-markdown_strict/steamgraph-1.png" title="" alt="" style="display: block; margin: auto;" />
 
