@@ -12,6 +12,11 @@ library(data.table)
 library(ggTimeSeries)
 ```
 
+# ggTimeSeries
+This R package offers novel time series visualisations. It is based on `ggplot2` and offers `geom`s and pre-packaged functions for easily creating any of the offered charts. Some examples are listed below.
+
+This package can be installed from github by installing `devtools` library and then running the following command - `devtools::install_github('Ather-Energy/ggTimeSeries')`.
+
 ## Line Charts Legacy
 IoT devices generate a lot of sequential data over time, also called time series data. Legacy portrayals of such data would centre around line charts. Line charts have reportedly been around since the early 1700s (source: Wikipedia) and we have nothing against them.  They facilitate trend detection and comparison, are simple to draw, and easy to understand; all in all a very well behaved visualisation. In modern times, their use is widespread from the heartbeat monitor at a hospital to the multiple-monitor display at a trader's desk.
 
@@ -42,7 +47,7 @@ plot(Excel97Plot)
 
 ```
 
-## ggTimeSeries
+## Alternatives
 
 However there are cases when the data scientist becomes more demanding and specific. Five alternatives available to such a data scientist are listed below. All of these options are available as `geom`s or packaged functions in the `ggplot2` based `ggTimeSeries` package.
 
@@ -61,7 +66,7 @@ minimalTheme = theme_update(
 
 ```
 
-## Calendar Heatmap
+### Calendar Heatmap
 Available as `stat_calendar_heatmap` and `ggplot_calendar_heatmap`.
 
 A calendar heatmap is a great way to visualise daily data. Its structure makes it easy to detect weekly, monthly, or seasonal patterns.
@@ -80,7 +85,6 @@ dtData = data.table(
    )
 dtData[, ValueCol := ValueCol + (strftime(DateCol,"%u") %in% c(6,7) * runif(1) * 0.75), .I]
 dtData[, ValueCol := ValueCol + (abs(as.numeric(strftime(DateCol,"%m")) - 6.5)) * runif(1) * 0.75, .I]
-dtData[, CategCol := letters[round(ValueCol * 7)]]
 
 # base plot
 p1 = ggplot_calendar_heatmap(
@@ -95,6 +99,10 @@ p1 +
    ylab('') + 
    scale_fill_continuous(low = 'green', high = 'red') + 
    facet_wrap(~Year, ncol = 1)
+
+
+# creating some categorical data
+dtData[, CategCol := letters[1 + round(ValueCol * 7)]]
 
 # base plot
 p2 = ggplot_calendar_heatmap(
@@ -113,7 +121,7 @@ p2 +
 ```
 
 
-## Horizon Plots
+### Horizon Plots
 Available as `stat_horizon` and `ggplot_horizon`.
 
 Imagine an area chart which has been chopped into multiple chunks of equal height. If you overlay these chunks one on top of the the other, and colour them to indicate which chunk it is, you get a horizon plot. Horizon plots are useful when visualising y values spanning a vast range but with a skewed distribution, and / or trying to highlight outliers without losing context of variation in the rest of the data. 
@@ -139,7 +147,7 @@ p1 +
 ```
 
 
-## Steamgraphs
+### Steamgraphs
 
 Available as `stat_steamgraph`.
 
@@ -175,7 +183,7 @@ p1 +
 ```
 
 
-## Waterfall
+### Waterfall
 Available as `stat_waterfall` and `ggplot_waterfall`.
 
 Rather than the values itself, a waterfall plot tries to bring out the changes in the values.
@@ -200,7 +208,7 @@ p1 +
 ```
 
 
-## Occurrence Dot Plot
+### Occurrence Dot Plot
 Available as `stat_occurrence`.
 
 This one is a favourite in infographics. For rare events, the reader would find it convenient to have the count of events encoded in the chart itself instead of having to map the value back to the Y axis.

@@ -1,3 +1,14 @@
+ggTimeSeries
+============
+
+This R package offers novel time series visualisations. It is based on
+`ggplot2` and offers `geom`s and pre-packaged functions for easily
+creating any of the offered charts. Some examples are listed below.
+
+This package can be installed from github by installing `devtools`
+library and then running the following command -
+`devtools::install_github('Ather-Energy/ggTimeSeries')`.
+
 Line Charts Legacy
 ------------------
 
@@ -14,7 +25,7 @@ to the multiple-monitor display at a trader's desk.
 
 <img src="README_files/figure-markdown_strict/excel97_line-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-ggTimeSeries
+Alternatives
 ------------
 
 However there are cases when the data scientist becomes more demanding
@@ -35,8 +46,7 @@ Before that, setting a minimal theme -
        panel.border = element_blank()
     )
 
-Calendar Heatmap
-----------------
+### Calendar Heatmap
 
 Available as `stat_calendar_heatmap` and `ggplot_calendar_heatmap`.
 
@@ -55,7 +65,6 @@ makes it easy to detect weekly, monthly, or seasonal patterns.
        )
     dtData[, ValueCol := ValueCol + (strftime(DateCol,"%u") %in% c(6,7) * runif(1) * 0.75), .I]
     dtData[, ValueCol := ValueCol + (abs(as.numeric(strftime(DateCol,"%m")) - 6.5)) * runif(1) * 0.75, .I]
-    dtData[, CategCol := letters[round(ValueCol * 7)]]
 
     # base plot
     p1 = ggplot_calendar_heatmap(
@@ -73,6 +82,9 @@ makes it easy to detect weekly, monthly, or seasonal patterns.
 
 <img src="README_files/figure-markdown_strict/calendar_heatmap-1.png" title="" alt="" style="display: block; margin: auto;" />
 
+    # creating some categorical data
+    dtData[, CategCol := letters[1 + round(ValueCol * 7)]]
+
     # base plot
     p2 = ggplot_calendar_heatmap(
        dtData,
@@ -88,8 +100,7 @@ makes it easy to detect weekly, monthly, or seasonal patterns.
 
 <img src="README_files/figure-markdown_strict/calendar_heatmap-2.png" title="" alt="" style="display: block; margin: auto;" />
 
-Horizon Plots
--------------
+### Horizon Plots
 
 Available as `stat_horizon` and `ggplot_horizon`.
 
@@ -121,8 +132,7 @@ without losing context of variation in the rest of the data.
 
 <img src="README_files/figure-markdown_strict/horizon-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-Steamgraphs
------------
+### Steamgraphs
 
 Available as `stat_steamgraph`.
 
@@ -162,8 +172,7 @@ time.
 
 <img src="README_files/figure-markdown_strict/steamgraph-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-Waterfall
----------
+### Waterfall
 
 Available as `stat_waterfall` and `ggplot_waterfall`.
 
@@ -188,8 +197,7 @@ changes in the values.
 
 <img src="README_files/figure-markdown_strict/waterfall-1.png" title="" alt="" style="display: block; margin: auto;" />
 
-Occurrence Dot Plot
--------------------
+### Occurrence Dot Plot
 
 Available as `stat_occurrence`.
 
