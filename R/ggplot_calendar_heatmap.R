@@ -70,12 +70,12 @@ ggplot_calendar_heatmap = function(
    vcGroupingColumnNames = 'Year'
 ) {
 
+   setDT(dtDateValue)
    dtDateValue[, Year := as.integer(strftime(get(cDateColumnName), '%Y'))]
    vcGroupingColumnNames = unique(c(vcGroupingColumnNames, 'Year'))
 
    # ensuring that there is an entry for each date for each group of
    # columns that the user has specified
-   setDT(dtDateValue)
    dtDateValue = merge(
       dtDateValue,
       setnames(

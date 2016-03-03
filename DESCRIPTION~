@@ -1,17 +1,28 @@
 Package: ggTimeSeries
 Type: Package
-Title: Nicer Time Series Visualisations with ggplot syntax.
+Title: Nicer time series visualisations with ggplot syntax.
 Version: 0.1
 Date: 2016-01-24
 Author: Aditya Kothari [aut, cre], Ather [cph]
 Maintainer: Aditya Kothari <aditya.kothari@atherenergy.com>
-Description: Provides geoms for novel time series visualisations.
+Description: Provides geoms for novel time series visualisations - steamgraphs,
+calendar heatmaps, horizon, waterfalls, and occurrence.
 URL: https://github.com/Ather-Energy/ggTimeSeries
 BugReports: https://github.com/Ather-Energy/ggTimeSeries/issues
 License: MIT
 LazyData: TRUE
 Depends:
-Imports:
    data.table,
    ggplot2
+Imports:
+   methods,
+   chron,
+   digest,
+   grid,
+   gtable (>= 0.1.1),
+   MASS,
+   plyr (>= 1.7.1),
+   reshape2,
+   scales (>= 0.3.0),
+   stats
 RoxygenNote: 5.0.1
